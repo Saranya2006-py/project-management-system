@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  useEffect,
-  useState,
-} from "react";
-
-import {
-  useParams,
-} from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 interface Task {
   id: string;
@@ -27,123 +21,114 @@ interface Project {
 }
 
 export default function ProjectDetailsPage() {
-  const params =
-    useParams();
+  const params = useParams();
 
-  const id =
-    params.id as string;
+  const id = params.id as string;
 
   const [project, setProject] =
-    useState<Project | null>(
-      null
-    );
+    useState<Project | null>(null);
 
   useEffect(() => {
-    fetch(
-      `/api/projects/${id}`
-    )
-      .then((res) =>
-        res.json()
-      )
-      .then((data) =>
-        setProject(data)
-      );
+    fetch(`/api/projects/${id}`)
+      .then((res) => res.json())
+      .then((data) => setProject(data));
   }, [id]);
 
   if (!project) {
     return (
-      <div className="p-10">
+      <div className="min-h-screen p-10 text-white">
         Loading...
       </div>
     );
   }
 
   return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold mb-4">
-        {project.name}
-      </h1>
+    <div className="min-h-screen p-10 text-white">
+      <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
 
-      <p className="mb-4">
-        {
-          project.description
-        }
-      </p>
+        <h1 className="text-4xl font-bold mb-4">
+          {project.name}
+        </h1>
 
-      <div className="mb-6">
-        <p>
-          <strong>
-            Status:
-          </strong>{" "}
-          {project.status}
+        <p className="text-gray-300 mb-6">
+          {project.description}
         </p>
 
-        <p>
-          <strong>
-            Start:
-          </strong>{" "}
-          {new Date(
-            project.startDate
-          ).toLocaleDateString()}
-        </p>
+        <div className="space-y-2 mb-8">
+          <p>
+            <span className="font-semibold text-cyan-300">
+              Status:
+            </span>{" "}
+            {project.status}
+          </p>
 
-        <p>
-          <strong>
-            End:
-          </strong>{" "}
-          {new Date(
-            project.endDate
-          ).toLocaleDateString()}
-        </p>
-      </div>
+          <p>
+            <span className="font-semibold text-cyan-300">
+              Start:
+            </span>{" "}
+            {new Date(
+              project.startDate
+            ).toLocaleDateString()}
+          </p>
 
-      <h2 className="text-2xl font-bold mb-4">
-        Tasks
-      </h2>
+          <p>
+            <span className="font-semibold text-cyan-300">
+              End:
+            </span>{" "}
+            {new Date(
+              project.endDate
+            ).toLocaleDateString()}
+          </p>
+        </div>
 
-      <table className="w-full border">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border p-2">
-              Name
-            </th>
+        <h2 className="text-2xl font-bold mb-4">
+          Tasks
+        </h2>
 
-            <th className="border p-2">
-              Priority
-            </th>
+        <div className="bg-white/5 rounded-2xl overflow-hidden">
+          <table className="w-full text-white">
+            <thead>
+              <tr className="bg-white/10 text-cyan-300">
+                <th className="p-3">
+                  Name
+                </th>
 
-            <th className="border p-2">
-              Status
-            </th>
-          </tr>
-        </thead>
+                <th className="p-3">
+                  Priority
+                </th>
 
-        <tbody>
-          {project.tasks.map(
-            (task) => (
-              <tr
-                key={task.id}
-              >
-                <td className="border p-2">
-                  {task.name}
-                </td>
-
-                <td className="border p-2">
-                  {
-                    task.priority
-                  }
-                </td>
-
-                <td className="border p-2">
-                  {
-                    task.status
-                  }
-                </td>
+                <th className="p-3">
+                  Status
+                </th>
               </tr>
-            )
-          )}
-        </tbody>
-      </table>
+            </thead>
+
+            <tbody>
+              {project.tasks.map(
+                (task) => (
+                  <tr
+                    key={task.id}
+                    className="border-t border-white/10"
+                  >
+                    <td className="p-3">
+                      {task.name}
+                    </td>
+
+                    <td className="p-3">
+                      {task.priority}
+                    </td>
+
+                    <td className="p-3">
+                      {task.status}
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
     </div>
   );
 }

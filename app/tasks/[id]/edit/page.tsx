@@ -1,20 +1,15 @@
 "use client";
 
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import {
   useRouter,
   useParams,
 } from "next/navigation";
 
 export default function EditTaskPage() {
-  const router =
-    useRouter();
+  const router = useRouter();
 
-  const params =
-    useParams();
+  const params = useParams();
 
   const taskId =
     params.id as string;
@@ -30,12 +25,8 @@ export default function EditTaskPage() {
     });
 
   useEffect(() => {
-    fetch(
-      `/api/tasks/${taskId}`
-    )
-      .then((res) =>
-        res.json()
-      )
+    fetch(`/api/tasks/${taskId}`)
+      .then((res) => res.json())
       .then((task) => {
         setForm({
           name: task.name,
@@ -46,8 +37,9 @@ export default function EditTaskPage() {
           status:
             task.status,
           dueDate:
-            task.dueDate
-              ?.split("T")[0],
+            task.dueDate?.split(
+              "T"
+            )[0],
           projectId:
             task.projectId,
         });
@@ -67,33 +59,28 @@ export default function EditTaskPage() {
           "Content-Type":
             "application/json",
         },
-        body: JSON.stringify(
-          form
-        ),
+        body: JSON.stringify(form),
       }
     );
 
     if (res.ok) {
-      router.push(
-        "/tasks"
-      );
+      router.push("/tasks");
     }
   }
 
   return (
-    <div className="p-10 max-w-lg">
-      <h1 className="text-3xl font-bold mb-6">
-        Edit Task
-      </h1>
+    <div className="min-h-screen flex items-center justify-center p-10 text-white">
 
       <form
-        onSubmit={
-          handleSubmit
-        }
-        className="flex flex-col gap-4"
+        onSubmit={handleSubmit}
+        className="w-full max-w-xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl flex flex-col gap-4"
       >
+        <h1 className="text-3xl font-bold text-center">
+          Edit Task
+        </h1>
+
         <input
-          className="border p-2"
+          className="p-3 rounded-xl bg-white/10 border border-white/20 text-white"
           value={form.name}
           onChange={(e) =>
             setForm({
@@ -105,65 +92,60 @@ export default function EditTaskPage() {
         />
 
         <textarea
-          className="border p-2"
-          value={
-            form.description
-          }
+          className="p-3 rounded-xl bg-white/10 border border-white/20 text-white"
+          value={form.description}
           onChange={(e) =>
             setForm({
               ...form,
               description:
-                e.target
-                  .value,
+                e.target.value,
             })
           }
         />
 
         <select
-          className="border p-2"
-          value={
-            form.priority
-          }
+          className="p-3 rounded-xl bg-slate-800 border border-white/20 text-white"
+          value={form.priority}
           onChange={(e) =>
             setForm({
               ...form,
               priority:
-                e.target
-                  .value,
+                e.target.value,
             })
           }
         >
           <option value="LOW">
             LOW
           </option>
+
           <option value="MEDIUM">
             MEDIUM
           </option>
+
           <option value="HIGH">
             HIGH
           </option>
         </select>
 
         <select
-          className="border p-2"
-          value={
-            form.status
-          }
+          className="p-3 rounded-xl bg-slate-800 border border-white/20 text-white"
+          value={form.status}
           onChange={(e) =>
             setForm({
               ...form,
               status:
-                e.target
-                  .value,
+                e.target.value,
             })
           }
         >
           <option value="PENDING">
             PENDING
           </option>
+
           <option value="IN_PROGRESS">
             IN_PROGRESS
           </option>
+
           <option value="COMPLETED">
             COMPLETED
           </option>
@@ -171,23 +153,20 @@ export default function EditTaskPage() {
 
         <input
           type="date"
-          className="border p-2"
-          value={
-            form.dueDate
-          }
+          className="p-3 rounded-xl bg-slate-800 border border-white/20 text-white"
+          value={form.dueDate}
           onChange={(e) =>
             setForm({
               ...form,
               dueDate:
-                e.target
-                  .value,
+                e.target.value,
             })
           }
         />
 
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded"
+          className="bg-gradient-to-r from-cyan-500 to-blue-600 py-3 rounded-xl font-semibold"
         >
           Update Task
         </button>

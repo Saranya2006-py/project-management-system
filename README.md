@@ -1,36 +1,171 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Gamified Project Management System
 
-## Getting Started
+A modern Project Management System built with Next.js, Prisma, PostgreSQL, JWT Authentication, and Tailwind CSS.
 
-First, run the development server:
+This application allows users to manage projects, tasks, dashboards, and audit logs through a gamified and interactive interface.
+
+---
+
+## 📌 Features
+
+### 🔐 Authentication
+- User Registration
+- User Login
+- JWT Authentication
+- Protected Routes
+- Logout Functionality
+
+### 📁 Project Management
+- Create Project
+- View Projects
+- Update Project
+- Delete Project
+- Project Status Tracking
+
+### ✅ Task Management
+- Create Tasks
+- Assign Tasks to Projects
+- Update Tasks
+- Delete Tasks
+- Task Priority Management
+- Due Date Tracking
+
+### 📊 Dashboard
+- Total Projects
+- Total Tasks
+- Completed Tasks
+- Pending Tasks
+- Overdue Tasks
+- Interactive Charts
+
+### 📜 Audit Logs
+- Track User Actions
+- Project Creation Logs
+- Task Creation Logs
+- Activity History
+
+### 🎮 Gamified UI
+- Glassmorphism Design
+- Animated Background Effects
+- Modern Dashboard
+- Responsive Design
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- Next.js 16
+- React
+- TypeScript
+- Tailwind CSS
+- Recharts
+
+### Backend
+- Next.js API Routes
+- Prisma ORM
+- PostgreSQL
+
+### Authentication
+- JWT
+- bcryptjs
+
+### Validation
+- Zod
+
+---
+
+## 📂 Project Structure
+
+```bash
+app/
+ ├── dashboard
+ ├── login
+ ├── register
+ ├── projects
+ ├── tasks
+ ├── audit-logs
+ └── api
+
+components/
+ ├── Navbar.tsx
+ └── GameBackground.tsx
+
+lib/
+ ├── prisma.ts
+ ├── auth.ts
+ ├── audit.ts
+
+prisma/
+ └── schema.prisma
+```
+
+---
+
+## ⚙️ Installation
+
+### Clone Repository
+
+```bash
+git clone <repository-url>
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Configure Environment Variables
+
+Create:
+
+```env
+.env
+```
+
+Add:
+
+```env
+DATABASE_URL=
+JWT_SECRET=
+```
+
+### Run Prisma
+
+```bash
+npx prisma generate
+npx prisma db push
+```
+
+### Start Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📸 Screens
 
-To learn more about Next.js, take a look at the following resources:
+- Landing Page
+- Login Page
+- Register Page
+- Dashboard
+- Projects
+- Tasks
+- Audit Logs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 👨‍💻 Author
 
-## Deploy on Vercel
+Saranya
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Internship Project Submission
